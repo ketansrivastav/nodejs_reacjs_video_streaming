@@ -1,0 +1,23 @@
+{
+  "name": "fun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3"
+    
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "webpack": "^4.1.1",
+    "webpack-devserver": "^0.0.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "frontend" : "node ./frontend/webpack/webpack.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
