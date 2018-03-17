@@ -14,8 +14,8 @@ module.exports = {
     
             output: {
     
-              path: dev_www + '/',
-              publicPath: dev_www + '/',
+              path: www + '/',
+              publicPath: www + '/',
               filename: "bundle.js"
     
             },

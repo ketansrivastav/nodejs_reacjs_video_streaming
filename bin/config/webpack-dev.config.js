@@ -8,18 +8,22 @@ module.exports = {
     
            
             context: path.resolve('.'),
-            entry: {
-                app:[frontend_src + '/app.js']
-            },
+            entry: [
+                'webpack/hot/dev-server',
+                'webpack-hot-middleware/client',
+                frontend_src + '/app.js'
+            ],
     
             output: {
     
-              path: dev_www + '/',
-              publicPath: dev_www + '/',
+              path:  dev_www,
+              publicPath: 'http://localhost:3000',
               filename: "bundle.js"
     
             },
     
+               
+
             module:{
     
               rules:[

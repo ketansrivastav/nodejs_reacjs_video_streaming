@@ -4,19 +4,26 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "express-handlebars" : "*"
     
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env" : "*",
+    "babel-preset-react": "*",
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
     "webpack": "^4.1.1",
-    "webpack-devserver": "^0.0.6"
+    "webpack-dev-server": "*",
+    "nodemon": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "frontend" : "node ./frontend/webpack/webpack.js"
+    "webpack" : "node ./bin/npm_scripts/webpack.js",
+    "dev" : "nodemon ./backend/server"
   },
   "author": "",
   "license": "ISC"
