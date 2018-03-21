@@ -1,27 +1,31 @@
 
 const {frontend_src,dev_www} = require('./paths.js')
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     
         // Configuration Object  
     
-           
+           mode: "development",
             context: path.resolve('.'),
             entry: [
-        
+                'webpack-hot-middleware/client',
                 frontend_src + '/app.js'
             ],
     
             output: {
     
               path:  dev_www,
-              publicPath: 'http://localhost:3000',
+              publicPath: 'http://localhost:3000/',
               filename: "bundle.js"
     
             },
     
-               
+            plugins: [
+              new webpack.NamedModulesPlugin(),
+              new webpack.HotModuleReplacementPlugin()
+            ],    
 
             module:{
     

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackDevConfig = require('../config/webpack-dev.config');
 const webpackProdConfig = require('../config/webpack-prod.config');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const mode = process.argv[2];
 let config;
@@ -10,18 +11,28 @@ let compiler;
 const express = require('express');
 const app = express();
 
+const devWebpackPort = 3000;
+
+
+
 if(mode === "dev") {
+process.env.NODE_ENV = 'development';
 compiler = webpack(webpackDevConfig);
+const hotMiddleware = webpackHotMiddleware(compiler);
+app.use(hotMiddleware);
+
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackDevConfig.output.publicPath
 }));
 
+app.use(hotMiddleware);
 
-app.get("*",express.static(webpackDevConfig.output.path))
+app.get("*",express.static(webpackDevConfig.output.path));
+
 // Serve the files on port 3000.
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n');
+app.listen(devWebpackPort, function () {
+  console.log(`Example app listening on port ${devWebpackPort}\n`);
 });
 
 }
