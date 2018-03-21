@@ -9,8 +9,7 @@ module.exports = {
            
             context: path.resolve('.'),
             entry: [
-                'webpack/hot/dev-server',
-                'webpack-hot-middleware/client',
+        
                 frontend_src + '/app.js'
             ],
     
