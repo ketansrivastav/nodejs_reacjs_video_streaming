@@ -1,11 +1,14 @@
+
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackDevConfig = require('../config/webpack-dev.config');
 const webpackProdConfig = require('../config/webpack-prod.config');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const proxy = require('http-proxy-middleware');
+const nodemon = require( 'nodemon');
+const {serverPath,backend} = require('../config/paths');
 
-const mode = process.argv[2];
 let config;
 let compiler;
 const express = require('express');
@@ -13,13 +16,29 @@ const app = express();
 
 const devWebpackPort = 3000;
 
+  process.env.BABEL_ENV = 'development';
+  process.env.NODE_ENV = 'development';
 
 
-if(mode === "dev") {
+  //start the backend server
+console.log(">>>>>",backend)
+  nodemon({
+    script: serverPath,
+    watch:backend + "/"
+    
+  }).on('restart', () => {
+    process.env.NODEMON_STATUS = 'restarted';
+  }).on('error',(error)=>{ console.log ( error ) });
+
+
+
+  let proxyOptions = {
+    target: 'http://localhost:8000'
+  };
 process.env.NODE_ENV = 'development';
+
 compiler = webpack(webpackDevConfig);
 const hotMiddleware = webpackHotMiddleware(compiler);
-app.use(hotMiddleware);
 
 
 app.use(webpackDevMiddleware(compiler, {
@@ -27,7 +46,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 app.use(hotMiddleware);
-
+app.use('/api' , proxy(proxyOptions))
 app.get("*",express.static(webpackDevConfig.output.path));
 
 // Serve the files on port 3000.
@@ -35,7 +54,7 @@ app.listen(devWebpackPort, function () {
   console.log(`Example app listening on port ${devWebpackPort}\n`);
 });
 
-}
+
 
 
 

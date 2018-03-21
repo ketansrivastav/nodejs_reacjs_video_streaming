@@ -11,6 +11,7 @@ module.exports = {
             context: path.resolve('.'),
             entry: [
                 'webpack-hot-middleware/client',
+                'babel-polyfill',
                 frontend_src + '/app.js'
             ],
     
@@ -25,8 +26,9 @@ module.exports = {
             plugins: [
               new webpack.NamedModulesPlugin(),
               new webpack.HotModuleReplacementPlugin()
-            ],    
+            ],  
 
+            
             module:{
     
               rules:[

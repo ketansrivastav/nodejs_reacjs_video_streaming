@@ -4,14 +4,19 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
-    "express-handlebars": "*"
+    "express-handlebars": "*",
+    "react": "^16.2.0",
+    "react-dev-utils": "^4.2.1",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.40",
     "@babel/preset-react": "^7.0.0-beta.40",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "*",
     "babel-preset-react": "*",
     "nodemon": "*",
@@ -21,9 +26,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "webpack": "node ./bin/npm_scripts/webpack.js",
-    "dev": "nodemon ./backend/server"
+    "start": "",
+    "dev": "node ./bin/npm_scripts/start-dev.js"
   },
   "author": "",
   "license": "ISC"

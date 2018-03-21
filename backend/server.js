@@ -4,6 +4,8 @@ const indexRoute = require('./routes/index');
 const apiRpute = require('./routes/api');
 const {www,express_views} = require('../bin/config/paths')
 
+const port = 8000;
+
 const path= require('path')
 
 const app = express();
@@ -21,4 +23,4 @@ app.use('/api',apiRpute);
 app.use(express.static(www))
 
 
-app.listen(8000,()=>{console.log('server started')});
+app.listen(port,()=>{console.log(`server started ${port}`);});
