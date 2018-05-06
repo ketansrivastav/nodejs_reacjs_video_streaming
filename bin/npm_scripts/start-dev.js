@@ -46,7 +46,8 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 app.use(hotMiddleware);
-app.use('/api' , proxy(proxyOptions))
+
+app.use('/video' , proxy(proxyOptions))
 app.get("*",express.static(webpackDevConfig.output.path));
 
 // Serve the files on port 3000.
